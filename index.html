@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Магазин одежды</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ЭКРАН АВТОРИЗАЦИИ -->
+    <div id="authScreen" class="auth-screen hidden">
+      <button class="auth-close" onclick="closeAuth()">✕</button>
+      <div class="auth-logo">🛍️</div>
+      <h2 class="auth-title" id="authTitle">Добро пожаловать!</h2>
+      <p class="auth-subtitle" id="authSubtitle">Войдите или создайте аккаунт</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Вход</button>
+        <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">Регистрация</button>
+      </div>
+
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <input type="text" id="loginName" placeholder="Имя пользователя" required>
+        <input type="password" id="loginPassword" placeholder="Пароль" required>
+        <div class="auth-error" id="loginError"></div>
+        <button type="submit" class="btn btn-buy">Войти</button>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden" onsubmit="handleRegister(event)">
+        <input type="text" id="regName" placeholder="Имя пользователя" required>
+        <input type="password" id="regPassword" placeholder="Пароль (мин. 4 символа)" required>
+        <input type="password" id="regPassword2" placeholder="Повторите пароль" required>
+        <div class="auth-error" id="registerError"></div>
+        <button type="submit" class="btn btn-buy">Зарегистрироваться</button>
+      </form>
+
+      <p class="auth-hint">Данные хранятся локально в вашем браузере</p>
+    </div>
+
+    <!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
+    <div id="appScreen" class="app-screen">
+      <header class="app-header">
+        <h1 id="headerTitle">Магазин одежды</h1>
+      </header>
+
+      <main class="content" id="appContent"></main>
+
+      <!-- Три вкладки -->
+      <nav class="bottom-nav">
+        <button class="nav-btn active" data-page="home" onclick="switchPage('home')">
+          <span class="icon">🏠</span>
+          <span class="label">Главная</span>
+        </button>
+        <button class="nav-btn" data-page="cart" onclick="switchPage('cart')">
+          <span class="icon">🛒</span>
+          <span class="label">Корзина</span>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+        <button class="nav-btn" data-page="profile" onclick="switchPage('profile')">
+          <span class="icon">👤</span>
+          <span class="label">Профиль</span>
+          <span class="badge" id="favBadge">0</span>
+        </button>
+      </nav>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
